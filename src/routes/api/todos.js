@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
-import { getTodo, getTodos, addTodo, updateTodo } from '../../utils/todos'
+import { getTodos, getTodo, addTodo, updateTodo } from '../../utils/todos'
 
 const router = Router()
 

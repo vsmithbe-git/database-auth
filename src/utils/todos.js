@@ -18,7 +18,7 @@ export const getTodos = async (completed = null) => {
     return await db.todos.findMany()
   }
 
-  logger.log.success('Getting by completed todos')
+  logger.log.success('Getting by completion todos')
 
   // eslint-disable-next-line no-unneeded-ternary
   const isCompleted = completed === 'true' ? true : false
@@ -31,7 +31,7 @@ export const getTodos = async (completed = null) => {
 }
 
 export const getTodo = async (id) => {
-  logger.log.info(`Validating id ${id}`)
+  logger.log.info(`Validating id: ${id}`)
   const { error, value } = idSchema.validate(id)
 
   if (error) {
@@ -47,7 +47,7 @@ export const getTodo = async (id) => {
 }
 
 export const addTodo = async (todo) => {
-  logger.log.info(`Validating ${todo} for add`)
+  logger.log.info(`Validating ${todo} to add`)
   const { error, value } = todoSchema.validate(todo)
 
   if (error) {
@@ -55,9 +55,8 @@ export const addTodo = async (todo) => {
     return { error }
   }
 
-  logger.log.success(`Validated ${todo}`)
+  logger.log.success(`Validated: ${todo}`)
 
-  // eslint-disable-next-line prettier/prettier
   const newTodo = await db.todos.create({
     data: {
       ...value,
@@ -81,7 +80,7 @@ export const updateTodo = async (id, todo) => {
     return { todoError }
   }
 
-  logger.log.info(`Validating id ${id}`)
+  logger.log.info(`Validating id: ${id}`)
   const { error: idError, value: idValue } = idSchema.validate(id)
 
   if (idError) {
